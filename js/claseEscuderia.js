@@ -2,38 +2,67 @@
 
 "use strict";
 
+const ESCUDERIAS = [COCHES, PERSONAS];
 class Escuderia {
-    constructor(nombre, presupuesto, pais) {
-        this.nombre = nombre;
-        this.presupuesto = presupuesto;
-        this.pais = pais;
-    }
+  constructor(codigo, coche, nombre = "", presupuesto = 0, pais = "") {
+    this.codigo = Escuderia.counter++;
+    this.coche = coche;
+    this.nombre = nombre;
+    this.presupuesto = presupuesto;
+    this.pais = pais;
+  }
 
-    getNombre() {
-        return this.nombre;
-    }
+  getCoche() {
+    return this.coche;
+  }
 
-    setNombre(nombre) {
-        this.nombre = nombre;
-    }
+  setCoche(coche) {
+    this.coche = coche;
+  }
 
-    getPresupuesto() {
-        return this.presupuesto;
-    }
+  getNombre() {
+    return this.nombre;
+  }
 
-    setPresupuesto(presupuesto) {
-        this.presupuesto = presupuesto;
-    }
+  setNombre(nombre) {
+    this.nombre = nombre;
+  }
 
-    getPais() {
-        return this.pais;
-    }
+  getPresupuesto() {
+    return this.presupuesto;
+  }
 
-    setPais(pais) {
-        this.pais = pais;
-    }
+  setPresupuesto(presupuesto) {
+    this.presupuesto = presupuesto;
+  }
 
-    toString() {
-        return `Nombre: ${this.nombre}, Presupuesto: ${this.presupuesto}, País: ${this.pais}`;
-    }
+  getPais() {
+    return this.pais;
+  }
+
+  setPais(pais) {
+    this.pais = pais;
+  }
+
+  getCodigo() {
+    return this.codigo;
+  }
+
+  toString() {
+    return `Campeonato: ${this.campeonato}, Nombre: ${this.nombre}, Presupuesto: ${this.presupuesto}, País de Origen: ${this.pais}`;
+  }
+
+  static counter = Math.floor(Math.random() * 100000);
 }
+
+// Introducir 5 escuderías y mostrarlas por pantalla.
+const escuderia1 = new Escuderia("Ferrari", "Ferrari", 100000000, "Italia");
+const escuderia2 = new Escuderia("Mercedes", "Mercedes", 100000000, "Alemania");
+const escuderia3 = new Escuderia("Red Bull", "Red Bull", 100000000, "Austria");
+const escuderia4 = new Escuderia(
+  "McLaren",
+  "McLaren",
+  100000000,
+  "Reino Unido"
+);
+const escuderia5 = new Escuderia("Renault", "Renault", 100000000, "Francia");

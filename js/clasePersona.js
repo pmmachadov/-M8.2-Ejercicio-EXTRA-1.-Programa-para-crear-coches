@@ -2,56 +2,59 @@
 
 "use strict";
 
+const PERSONAS = [MECANICOS, PILOTOS];
 class Persona {
-    constructor(nombre, primerApellido, edad, antiguedad, sueldo) {
-        this.nombre = nombre;
-        this.primerApellido = primerApellido;
-        this.edad = edad;
-        this.antiguedad = antiguedad;
-        this.sueldo = sueldo;
-    }
+  constructor(codigo, nombre, primerApellido, edad, antiguedad, sueldo) {
+    this.codigo = Persona.counter++;
+    this.nombre = nombre;
+    this.primerApellido = primerApellido;
+    this.edad = edad;
+    this.antiguedad = antiguedad;
+    this.sueldo = sueldo;
+  }
 
-    getNombre() {
-        return this.nombre;
-    }
+  getNombre() {
+    return this.nombre;
+  }
 
-    setNombre(nombre) {
-        this.nombre = nombre;
-    }
+  setNombre(nombre) {
+    this.nombre = nombre;
+  }
 
-    getPrimerApellido() {
-        return this.primerApellido;
-    }
+  getPrimerApellido() {
+    return this.primerApellido;
+  }
 
-    setPrimerApellido(primerApellido) {
-        this.primerApellido = primerApellido;
-    }
+  setPrimerApellido(primerApellido) {
+    this.primerApellido = primerApellido;
+  }
 
-    getEdad() {
-        return this.edad;
-    }
+  getEdad() {
+    return this.edad;
+  }
 
-    setEdad(edad) {
-        this.edad = edad;
-    }
+  setEdad(edad) {
+    this.edad = edad;
+  }
 
-    getAntiguedad() {
-        return this.antiguedad;
-    }
+  getAntiguedad() {
+    return this.antiguedad;
+  }
 
-    setAntiguedad(antiguedad) {
-        this.antiguedad = antiguedad;
-    }
+  setAntiguedad(antiguedad) {
+    this.antiguedad = antiguedad;
+  }
 
-    getSueldo() {
-        return this.sueldo;
-    }
+  getSueldo() {
+    return this.sueldo;
+  }
 
-    setSueldo(sueldo) {
-        this.sueldo = sueldo;
-    }
+  setSueldo(sueldo) {
+    this.sueldo = sueldo;
+  }
 
-    toString() {
-        return `Nombre: ${this.nombre}, Primer Apellido: ${this.primerApellido}, Edad: ${this.edad}, Tiempo en Escudería: ${this.antiguedad}, Sueldo: ${this.sueldo}`;
-    }
+  toString() {
+    return `Nombre: ${this.nombre}, Primer Apellido: ${this.primerApellido}, Edad: ${this.edad}, Tiempo en Escudería: ${this.antiguedad}, Sueldo: ${this.sueldo}`;
+  }
+  static counter = Math.floor(Math.random() * 100000);
 }

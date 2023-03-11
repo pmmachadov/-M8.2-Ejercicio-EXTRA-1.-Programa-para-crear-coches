@@ -1,16 +1,13 @@
-// Cada escudería puede tener más de un coche y de cada uno quiere saber la potencia, la velocidad máxima, el color y el precio de mercado.
-
 "use strict";
 
 class Coche {
-  static counter = Math.floor(Math.random() * 100 + "COCHE");
   
   constructor(potencia, velocidadMaxima, color, precio) {
-    this.codigo = Coche.counter++;
     this.potencia = potencia;
     this.velocidadMaxima = velocidadMaxima;
     this.color = color;
     this.precio = precio;
+    this.codigoCoche = codigoGenerator();
   }
 
   getPotencia() {
@@ -45,11 +42,19 @@ class Coche {
     this.precio = precio;
   }
 
-  getCodigo() {
-    return this.codigo;
+  getCodigoCoche() {
+    return this.codigoCoche;
   }
+}
 
-  toString() {
-    return `Potencia: ${this.potencia}, Velocidad Máxima: ${this.velocidadMaxima}, Color: ${this.color}, Precio: ${this.precio}`;
+function codigoGenerator() {
+  let codigoCoche = "";
+  let characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (let i = 0; i < 2; i++) {
+    codigoCoche += characters.charAt(
+      Math.floor(Math.random() * characters.length)
+    );
   }
+  return codigoCoche + "-Coche";
 }

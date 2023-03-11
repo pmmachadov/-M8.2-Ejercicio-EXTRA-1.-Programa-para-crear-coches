@@ -62,6 +62,67 @@ function altaEscuderia() {
     }
   }
 
+  function verEscuderia() {
+    let codigoEscuderia = prompt("Introduce el código de la escudería a ver");
+    let index = buscar(codigoEscuderia);
+    
+    if (index != -1) {
+      console.table(escuderias[index]);
+  
+      // create table element
+      let table = document.createElement("table");
+  
+      // create header row
+      let headerRow = document.createElement("tr");
+      let headerCells = ["Código", "Nombre", "Presupuesto", "País", "Coches", "Personas"];
+  
+      for (let i = 0; i < headerCells.length; i++) {
+        let cell = document.createElement("th");
+        cell.innerText = headerCells[i];
+        headerRow.appendChild(cell);
+      }
+  
+      table.appendChild(headerRow);
+  
+      // create data row
+      let dataRow = document.createElement("tr");
+  
+      let codigoCell = document.createElement("td");
+      codigoCell.innerText = escuderias[index].codigoEscuderia;
+      dataRow.appendChild(codigoCell);
+  
+      let nombreCell = document.createElement("td");
+      nombreCell.innerText = escuderias[index].nombreEscuderia;
+      dataRow.appendChild(nombreCell);
+  
+      let presupuestoCell = document.createElement("td");
+      presupuestoCell.innerText = escuderias[index].presupuesto;
+      dataRow.appendChild(presupuestoCell);
+  
+      let paisCell = document.createElement("td");
+      paisCell.innerText = escuderias[index].pais;
+      dataRow.appendChild(paisCell);
+  
+      let cochesCell = document.createElement("td");
+      cochesCell.innerText = escuderias[index].coches;
+      dataRow.appendChild(cochesCell);
+  
+      let personasCell = document.createElement("td");
+      personasCell.innerText = escuderias[index].personas;
+      dataRow.appendChild(personasCell);
+  
+      table.appendChild(dataRow);
+  
+      // add table to HTML
+      document.getElementById("tabla").innerHTML = "";
+      document.getElementById("tabla").appendChild(table);
+  
+    } else {
+      console.log(`La escudería con código ${codigoEscuderia} no existe.`);
+    }
+  }
+  
+
   function borrarTodasescuderias() {
     escuderias = []; // Borra todas las escuderias
     console.clear(); // Borra el console.log

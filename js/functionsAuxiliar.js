@@ -86,7 +86,7 @@ function actualizarTabla() {
       tablaPersonas.innerHTML += `<tr>
       <td>${personas[i].codigoPersona}</td>
       <td>${personas[i].nombrePersona}</td>
-      <td>${personas[i].apellidoPersona}</td>
+      <td>${personas[i].primerApellidoPersona}</td>
       <td>${personas[i].edad}</td>
       <td>${personas[i].antiguedad}</td>
       <td>${personas[i].altura}</td>

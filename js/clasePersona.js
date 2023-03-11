@@ -4,8 +4,8 @@
 
 class Persona {
   constructor(nombre, primerApellido, edad, antiguedad, sueldo, cargo) {
-    this.nombre = nombre;
-    this.primerApellido = primerApellido;
+    this.nombrePersona = nombrePersona;
+    this.primerApellidoPersona = primerApellidoPersona;
     this.edad = edad;
     this.antiguedad = antiguedad;
     this.sueldo = sueldo;
@@ -16,19 +16,19 @@ class Persona {
   }
 
   getNombre() {
-    return this.nombre;
+    return this.nombrePersona;
   }
 
   setNombre(nombre) {
-    this.nombre = nombre;
+    this.nombre = nombrePersona;
   }
 
   getPrimerApellido() {
-    return this.primerApellido;
+    return this.primerApellidoPersona;
   }
 
   setPrimerApellido(primerApellido) {
-    this.primerApellido = primerApellido;
+    this.primerApellidoPersona = primerApellidoPersona;
   }
 
   getEdad() {
@@ -62,6 +62,10 @@ class Persona {
   setCargo(cargo) {
     this.cargo = cargo;
   }
+
+  getCodigoPersona() {
+    return this.codigoPersona;
+  }
 }
 
 function codigoGeneratorPersona() {
@@ -75,8 +79,6 @@ function codigoGeneratorPersona() {
   }
   return codigoPersona + "-Persona";
 }
-
-("use strict");
 
 class Mecanico extends Persona {
   constructor(
@@ -109,8 +111,6 @@ class Mecanico extends Persona {
     return `Nombre: ${this.nombre}, Primer Apellido: ${this.primerApellido}, Edad: ${this.edad}, Tiempo en Escudería: ${this.antiguedad}, Sueldo: ${this.sueldo}, Coche: ${this.coche}, Estudios de Mecánica: ${this.estudiosDeMecanica}`;
   }
 }
-
-("use strict");
 
 class Piloto extends Persona {
   constructor(

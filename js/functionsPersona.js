@@ -1,43 +1,39 @@
 "use strict";
 
 function altaPersona() {
-    if (escuderias.length !== 0) {
-      let codigoEscuderia = prompt("Introduce el código de la escudería");
-      let indexEscuderia = buscar(codigoEscuderia);
-      if (indexEscuderia != -1) {
-        let nombre = document.getElementById("nombrePersona").value;
-        let apellido = document.getElementById("primerApellidoPersona").value;
-        let edad = document.getElementById("edadPersona").value;
-        let antiguedad = document.getElementById("antiguedadPersona").value;
-        let altura = document.getElementById("alturaPersona").value;
-        let peso = document.getElementById("pesoPersona").value;
-        let cargo = document.getElementById("cargoPersona").value; 
-        let Persona = {
-          nombre: nombre,
-          apellido: apellido,
-          edad: edad,
-          antiguedad: antiguedad,
-          altura: altura,
-          peso: peso,
-          cargo: cargo,
-          codigoEscuderia: codigoEscuderia,
-          codigo: codigoGenerator(),
-        };
-        // Add new object to the array
-        personas.push(Persona);
-        escuderias.push(Persona);
-        console.table(escuderias);
-        console.table(personas);
-        actualizarTabla();
-      } else if (indexEscuderia == -1) {
-        alert("No se ha encontrado la escudería con el código ingresado");
-        actualizarTabla();
-      }
-    } else {
-      alert("Para crear personas primero debe existir al menos una escudería");
+  if (escuderias.length !== 0) {
+    let codigoEscuderia = prompt("Introduce el código de la escudería");
+    let indexEscuderia = buscar(codigoEscuderia);
+    if (indexEscuderia != -1) {
+      let nombre = document.getElementById("nombrePersona").value;
+      let apellido = document.getElementById("primerApellidoPersona").value;
+      let edad = document.getElementById("edadPersona").value;
+      let antiguedad = document.getElementById("antiguedadPersona").value;
+      let altura = document.getElementById("alturaPersona").value;
+      let peso = document.getElementById("pesoPersona").value;
+      let cargo = document.getElementById("cargoPersona").value; 
+      let Persona = {
+        nombrePersona: nombre,
+        primerApellidoPersona: apellido,
+        edadPersona: edad,
+        antiguedadPersona: antiguedad,
+        alturaPersona: altura,
+        pesoPersona: peso,
+        cargoPersona: cargo,
+        codigoEscuderia: codigoEscuderia,
+        codigoPersona: codigoGenerator(),
+      };
+      // Add new object to the array
+      personas.push(Persona);
       actualizarTabla();
+    } else {
+      alert("No existe la escudería con código " + codigoEscuderia);
     }
+  } else {
+    alert("No hay escuderías registradas");
   }
+}
+
   
   function bajaPersona() {
     let escuderia = document.getElementById("escuderiaPersona").value;

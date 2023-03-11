@@ -1,9 +1,7 @@
 "use strict";
 
-const MECANICOS = [];
 class Mecanico extends Persona {
   constructor(
-    codigo,
     nombre,
     primerApellido,
     edad,
@@ -12,18 +10,13 @@ class Mecanico extends Persona {
     coche,
     estudiosDeMecanica
   ) {
-    super(nombre, primerApellido, edad, antiguedad, sueldo);
-    this.codigo = Mecanico.counter++;
+    super(nombre, primerApellido, edad, antiguedad, sueldo, cargo);
     this.coche = coche;
     this.estudiosDeMecanica = estudiosDeMecanica;
   }
 
   getCoche() {
     return this.coche;
-  }
-
-  setCoche(coche) {
-    this.coche = coche;
   }
 
   getEstudiosDeMecanica() {
@@ -34,12 +27,8 @@ class Mecanico extends Persona {
     this.estudiosDeMecanica = estudiosDeMecanica;
   }
 
-  getCodigo() {
-    return this.codigo;
-  }
-
   toString() {
-    return `Nombre: ${this.nombre}, Primer Apellido: ${this.primerApellido}, Edad: ${this.edad}, Tiempo en Escudería: ${this.antiguedad}, Sueldo: ${this.sueldo}, Coche: ${this.coche}`;
+    return `Nombre: ${this.nombre}, Primer Apellido: ${this.primerApellido}, Edad: ${this.edad}, Tiempo en Escudería: ${this.antiguedad}, Sueldo: ${this.sueldo}, Coche: ${this.coche}, Estudios de Mecánica: ${this.estudiosDeMecanica}`;
   }
-  static counter = Math.floor(Math.random() * 100000);
+  static counter = Math.floor(Math.random() * 100);
 }

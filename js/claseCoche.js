@@ -2,9 +2,10 @@
 
 "use strict";
 
-const COCHES = [];
 class Coche {
-  constructor(codigo, potencia, velocidadMaxima, color, precio) {
+  static counter = Math.floor(Math.random() * 100 + "COCHE");
+  
+  constructor(potencia, velocidadMaxima, color, precio) {
     this.codigo = Coche.counter++;
     this.potencia = potencia;
     this.velocidadMaxima = velocidadMaxima;
@@ -44,16 +45,11 @@ class Coche {
     this.precio = precio;
   }
 
+  getCodigo() {
+    return this.codigo;
+  }
+
   toString() {
     return `Potencia: ${this.potencia}, Velocidad Máxima: ${this.velocidadMaxima}, Color: ${this.color}, Precio: ${this.precio}`;
   }
-  static counter = Math.floor(Math.random() * 100000);
 }
-
-// Crear 5 coches
-
-const coche1 = new Coche(1000, 300, "Rojo", 1000000);
-const coche2 = new Coche(1000, 300, "Azul", 1000000);
-const coche3 = new Coche(1000, 300, "Verde", 1000000);
-const coche4 = new Coche(1000, 300, "Amarillo", 1000000);
-const coche5 = new Coche(1000, 300, "Blanco", 1000000);

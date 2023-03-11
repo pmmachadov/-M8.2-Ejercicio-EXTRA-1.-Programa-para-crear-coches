@@ -1,53 +1,223 @@
-// El sueldo base es de 50.000€.
-// Además, de los/las pilotos quieren saber su altura, su peso.
-// El sueldo de los/las pilotos es el sueldo base de las personas trabajadoras más 10.000€ por cada año de antigüedad en la escudería, más 50.000€ de peligrosidad.
-// De los mecánicos quieren saber si tienen estudios superiores de mecánica o no.
-// Y su sueldo se calcula sumando 10.000 € por cada año de antigüedad en la escudería más el sueldo base.
-// Se pide que la aplicación sea capaz de dar de alta, baja y ver pilotos y mecánicos, y ver escuderías y bólidos.
-// Las escuderías y los bólidos pueden estar introducidos directamente en el código.
-
-// grama para gestionar parte de la información
-//         que hasta ahora no tenían informatizada. Quieren saber de cada escudería que participa en el campeonato, su
-//         nombre, su presupuesto y su país de origen. Cada escudería puede tener más de un coche y de cada uno quiere
-//         saber la potencia, la velocidad máxima, el color y el precio de mercado.
-
-//         De las personas trabajadoras de las diferentes escuderías quieren saber el nombre, el primer apellido, la edad,
-//         el tiempo que llevan en la escudería y el sueldo.
-
-//         El sueldo base es de 50.000€. Además, de los/las pilotos quieren saber su altura, su peso. El sueldo de los/las
-//         pilotos es el sueldo base de las personas trabajadoras más 10.000€ por cada año de antigüedad en la escudería,
-//         más 50.000€ de peligrosidad.
-
-//         De los mecánicos quieren saber si tienen estudios superiores de mecánica o no. Y su sueldo se calcula sumando
-//         10.000 € por cada año de antigüedad en la escudería más el sueldo base.
-
-//         Se pide que la aplicación sea capaz de dar de alta, baja y ver pilotos y mecánicos, y ver escuderías y bólidos.
-//         Las escuderías y los bólidos pueden estar introducidos directamente en el código.
-
-// PSEUDO CODIGO DE LAS FUNCIONES
-// function sueldoPiloto();
-// function sueldoMecanico();
-// function buscar();
-// function altaPersona();
-// function altaEscuderia();
-// function altaCoche();
-// function bajaPersona();
-// function bajaEscuderia();
-// function bajaCoche();
-// function verPersona();
-// function verEscuderia();
-// function verCoche();
-// function verTodasLasEscuderias();
-// function verTodosLosCoches();
-// function verTodasLasPersonas();
-// function modificarPersona();
-// function modificarEscuderia();
-// function modificarCoche();
-// function eliminarPersona();
-// function eliminarEscuderia();
-// function eliminarCoche();
-
 "use strict";
+
+let escuderias = [];
+let coches = [];
+let personas = [];
+
+function buscar(codigo) {
+  let posicion = -1;
+  let i = 0;
+  let largo = escuderias.length;
+  while (i < largo && posicion == -1) {
+    if (escuderias[i].codigo == codigo) {
+      posicion = i;
+    }
+    i++;
+  }
+  return posicion;
+}
+
+// ESCUDERIA
+
+function altaEscuderia() {
+  let nombre = document.getElementById("nombreEscuderia").value;
+  let presupuesto = document.getElementById("presupuestoEscuderia").value;
+  let pais = document.getElementById("paisEscuderia").value;
+  let escuderia = {
+    nombre: nombre,
+    presupuesto: presupuesto,
+    pais: pais,
+    coches: [],
+    personas: [],
+    codigoEscuderia: codigoGenerator(),
+  };
+  escuderias.push(escuderia);
+  actualizarTablaEscuderia();
+  console.table(escuderias);
+}
+
+function bajaEscuderia() {
+  let codigo = prompt("Intrduce el código de la escudería a dar de baja");
+  let index = -1;
+  for (let i = 0; i < escuderias.length; i++) {
+    if (escuderias[i].codigoEscuderia == codigo) {
+      index = i;
+      confirm("¿Estás seguro de que quieres eliminar la escudería?");
+      escuderias.splice(index, 1);
+      actualizarTablaEscuderia();
+    } else {
+      alert("No se ha encontrado la escudería");
+    }
+  }
+}
+
+function modificarEscuderia() {
+  let codigo = prompt("Introduce el código de la escudería a modificar");
+  let index = -1;
+  for (let i = 0; i < escuderias.length; i++) {
+    if (escuderias[i].codigoEscuderia == codigo) {
+      index = i;
+      let nombre = prompt(
+        "Introduce el nuevo nombre de la escudería",
+        "escuderia.nombre"
+      );
+      let presupuesto = prompt(
+        "Introduce el nuevo presupuesto de la escudería",
+        "escuderia.presupuesto"
+      );
+      let pais = prompt(
+        "Introduce el nuevo país de la escudería",
+        "escuderia.pais"
+      );
+      escuderias[index].nombre = nombre;
+      escuderias[index].presupuesto = presupuesto;
+      escuderias[index].pais = pais;
+      actualizarTablaEscuderia();
+      break; // exit loop once escuderia is found and updated
+    }
+  }
+  if (index === -1) {
+    alert("No se ha encontrado la escudería"); // only show alert if no matches were found
+  }
+}
+
+function actualizarTablaEscuderia() {
+  let tabla = "";
+  for (let i = 0; i < escuderias.length; i++) {
+    tabla += `
+            <div class="card"> <br>
+            CODIGO: ${escuderias[i].codigoEscuderia} <br>
+            NOMBRE: ${escuderias[i].nombre} <br>
+            PRESUPUESTO: ${escuderias[i].presupuesto} <br>
+            PAIS: ${escuderias[i].pais} <br>
+            COCHES: ${escuderias[i].coches} <br>
+            personas: ${escuderias[i].personas} <br>
+            </div>
+          `;
+  }
+  document.getElementById("tablaEscuderias").innerHTML = tabla;
+}
+
+function borrarTodasescuderias() {
+  escuderias = []; // Borra todas las escuderias
+  console.clear(); // Borra el console.log
+  actualizarTablaEscuderia(); // Actualiza la tabla
+}
+
+// PERSONA
+
+function altaPersona() {
+  if (escuderias.length !== 0) {
+    let codigoEscuderia = document.getElementById("codigoEscuderiaPersona").value;
+    let indexEscuderia = buscar(codigoEscuderia);
+    if (indexEscuderia != -1) {
+      let nombre = document.getElementById("nombrePersona").value;
+      let apellido = document.getElementById("primerApellidoPersona").value;
+      let edad = document.getElementById("edadPersona").value;
+      let antiguedad = document.getElementById("antiguedadPersona").value;
+      let altura = document.getElementById("alturaPersona").value;
+      let peso = document.getElementById("pesoPersona").value;
+      let cargo = document.getElementById("cargoPersona").value;
+
+      let Persona = {
+        nombre: nombre,
+        apellido: apellido,
+        edad: edad,
+        antiguedad: antiguedad,
+        altura: altura,
+        peso: peso,
+        cargo: cargo,
+        codigo: codigoGenerator(),
+      };
+      // Add new object to the array
+      escuderias[indexEscuderia].personas.push(Persona);
+      actualizarTablaPersona();
+      console.table(escuderias[indexEscuderia].personas);
+    } else {
+      alert("No se ha encontrado la escudería con el código ingresado");
+    }
+  } else {
+    alert("Para crear personas primero debe existir al menos una escudería");
+  }
+}
+
+
+function bajaPersona() {
+  let escuderia = document.getElementById("escuderiaPersona").value;
+  let codigo = document.getElementById("codigoPersona").value;
+  let index = -1;
+  for (let i = 0; i < escuderias[escuderia].personas.length; i++) {
+    if (escuderias[escuderia].personas[i].codigo == codigo) {
+      index = i;
+      break;
+    }
+  }
+  if (index != -1) {
+    escuderias[escuderia].personas.splice(index, 1);
+    actualizarTablaPersona();
+  }
+}
+
+function modificarPersona() {
+  let escuderia = document.getElementById("escuderiaPersona").value;
+  let codigo = document.getElementById("codigoPersona").value;
+  let index = -1;
+  for (let i = 0; i < escuderias[escuderia].personas.length; i++) {
+    if (escuderias[escuderia].personas[i].codigo == codigo) {
+      index = i;
+      break;
+    }
+  }
+  if (index != -1) {
+    let nombre = prompt(
+      "Introduce el nuevo nombre de la persona",
+      "escuderia.personas.nombre"
+    );
+    let apellido = prompt(
+      "Introduce el nuevo apellido de la persona",
+      "escuderia.personas.apellido"
+    );
+    let edad = prompt(
+      "Introduce la nueva edad de la persona",
+      "escuderia.personas.edad"
+    );
+    let antiguedad = prompt(
+      "Introduce el nuevo tiempo en escudería de la persona",
+      "escuderia.personas.antiguedad"
+    );
+    let sueldo = prompt(
+      "Introduce el nuevo sueldo de la persona",
+      "escuderia.personas.sueldo"
+    );
+    let altura = prompt(
+      "Introduce la nueva altura de la persona",
+      "escuderia.personas.altura"
+    );
+    let peso = prompt(
+      "Introduce el nuevo peso de la persona",
+      "escuderia.personas.peso"
+    );
+    let cargo = prompt(
+      "Introduce el nuevo cargo de la persona",
+      "escuderia.personas.cargo"
+    );
+    escuderias[escuderia].personas[index].nombre = nombre;
+    escuderias[escuderia].personas[index].apellido = apellido;
+    escuderias[escuderia].personas[index].edad = edad;
+    escuderias[escuderia].personas[index].antiguedad = antiguedad;
+    escuderias[escuderia].personas[index].sueldo = sueldo;
+    escuderias[escuderia].personas[index].altura = altura;
+    escuderias[escuderia].personas[index].peso = peso;
+    escuderias[escuderia].personas[index].cargo = cargo;
+  }
+  actualizarTablaPersona();
+}
+
+function borrarTodasLaspersonas() {
+  personas = []; // Borra todas las escuderias
+  console.clear(); // Borra el console.log
+  actualizarTablaPersona(); // Actualiza la tabla
+}
 
 function sueldoPiloto(antiguedad) {
   const sueldoBase = 50000;
@@ -56,222 +226,116 @@ function sueldoPiloto(antiguedad) {
   return sueldo;
 }
 
-function sueldoMecanico() {
+function sueldoMecanico(antiguedad) {
   const sueldoBase = 50000;
   let sueldo = sueldoBase + antiguedad * 10000;
   return sueldo;
 }
 
-function buscar(codigo) {
-  let posicion = -1;
-  let i = 0;
-  let largo = pilotos.length;
-  while (i < largo && posicion == -1) {
-    if (pilotos[i].codigo == codigo) {
-      posicion = i;
-    }
-    i++;
+function calcularSueldopersonas(antiguedad) {
+  antiguedad = document.getElementById("antiguedad").value;
+  let sueldo = 0;
+  if (cargo == "piloto") {
+    sueldo = sueldoPiloto(antiguedad);
+  } else if (cargo == "mecanico") {
+    sueldo = sueldoMecanico(antiguedad);
   }
-  return posicion;
+  actualizarTablaPersona();
+  return sueldo;
 }
 
-function altaPersona() {
-  let nombre = document.getElementById("nombre").value;
-  let primerApellido = document.getElementById("primerApellido").value;
-  let edad = document.getElementById("edad").value;
-  let antiguedad = document.getElementById("antiguedad").value;
-  let sueldo = document.getElementById("sueldo").value;
-  let altura = document.getElementById("altura").value;
-  let peso = document.getElementById("peso").value;
-  let estudios = document.getElementById("estudios").value;
-  let pais = document.getElementById("pais").value;
-  let presupuesto = document.getElementById("presupuesto").value;
-  let potencia = document.getElementById("potencia").value;
-  let velocidadMaxima = document.getElementById("velocidadMaxima").value;
-  let color = document.getElementById("color").value;
-  let precioMercado = document.getElementById("precioMercado").value;
-  let piloto = new Piloto(
-    nombre,
-    primerApellido,
-    edad,
-    antiguedad,
-    sueldo,
-    altura,
-    peso
-  );
-  PILOTOS.push(piloto);
-  let mecanico = new Mecanico(
-    nombre,
-    primerApellido,
-    edad,
-    antiguedad,
-    sueldo,
-    estudios
-  );
-  MECANICOS.push(mecanico);
-  let escuderia = new Escuderia(nombre, pais, presupuesto);
-  ESCUDERIAS.push(escuderia);
-  let coche = new Coche(potencia, velocidadMaxima, color, precioMercado);
-  COCHES.push(coche);
+function actualizarTablaPersona() {
+  let tabla = "";
+  for (let i = 0; i < personas.length; i++) {
+    tabla += `
+            <div class="card"> <br>
+            CODIGO: ${personas[i].codigo} <br>
+            CODIGO ESCUDERIA: ${personas[i].codigoEscuderia} <br>
+            NOMBRE: ${personas[i].nombre} <br>
+            APELLIDO: ${personas[i].presupuesto} <br>
+            EDAD: ${personas[i].edad} <br>
+            ANTIGUEDAD: ${personas[i].antiguedad} <br>
+            ALTURA: ${personas[i].altura} <br>
+            PESO: ${personas[i].peso} <br>
+            CARGO: ${personas[i].cargo} <br>
+            </div>
+          `;
+  }
+  document.getElementById("tablaPersonas").innerHTML = tabla;
 }
 
-function altaEscuderia() {
-  let nombre = document.getElementById("nombre").value;
-  let pais = document.getElementById("pais").value;
-  let presupuesto = document.getElementById("presupuesto").value;
-  let escuderia = new Escuderia(nombre, pais, presupuesto);
-  ESCUDERIAS.push(escuderia);
-}
+// COCHE
 
 function altaCoche() {
-  let potencia = document.getElementById("potencia").value;
-  let velocidadMaxima = document.getElementById("velocidadMaxima").value;
-  let color = document.getElementById("color").value;
-  let precioMercado = document.getElementById("precioMercado").value;
-  let coche = new Coche(potencia, velocidadMaxima, color, precioMercado);
-  COCHES.push(coche);
-}
+  let escuderia = document.getElementById("escuderiaCoche").value;
+  let potencia = document.getElementById("potenciaCoche").value;
+  let velocidadMaxima = document.getElementById("velocidadMaximaCoche").value;
+  let color = document.getElementById("colorCoche").value;
+  let precioDeMercado = document.getElementById("precioDeMercadoCoche").value;
 
-function bajaPersona() {
-  let nombre = document.getElementById("nombre").value;
-  let posicion = buscar(nombre);
-  if (posicion != -1) {
-    pilotos.splice(posicion, 1);
-  }
-}
-
-function bajaEscuderia() {
-  let nombre = document.getElementById("nombre").value;
-  let posicion = buscar(nombre);
-  if (posicion != -1) {
-    escuderias.splice(posicion, 1);
-  }
+  // Add new object to the array
+  escuderias[escuderia].coches.push({
+    potencia: potencia,
+    velocidadMaxima: velocidadMaxima,
+    color: color,
+    precioDeMercado: precioDeMercado,
+  });
 }
 
 function bajaCoche() {
-  let nombre = document.getElementById("nombre").value;
-  let posicion = buscar(nombre);
-  if (posicion != -1) {
-    coches.splice(posicion, 1);
+  let escuderia = document.getElementById("escuderiaCoche").value;
+  let codigo = document.getElementById("codigoCoche").value;
+  let index = -1;
+  for (let i = 0; i < escuderias[escuderia].coches.length; i++) {
+    if (escuderias[escuderia].coches[i].codigo == codigo) {
+      index = i;
+      break;
+    }
+  }
+  if (index != -1) {
+    escuderias[escuderia].coches.splice(index, 1);
   }
 }
 
-function verPersona() {
-  let nombre = document.getElementById("nombre").value;
-  let posicion = buscar(nombre);
-  if (posicion != -1) {
-    document.getElementById("resultado").innerHTML = pilotos[posicion];
+function modificarCoche() {
+  let escuderia = document.getElementById("escuderiaCoche").value;
+  let codigo = document.getElementById("codigoCoche").value;
+  let index = -1;
+  for (let i = 0; i < escuderias[escuderia].coches.length; i++) {
+    if (escuderias[escuderia].coches[i].codigo == codigo) {
+      index = i;
+      break;
+    }
   }
-}
-
-function verEscuderia() {
-  let nombre = document.getElementById("nombre").value;
-  let posicion = buscar(nombre);
-  if (posicion != -1) {
-    document.getElementById("resultado").innerHTML = escuderias[posicion];
-  }
-}
-
-function verCoche() {
-  let nombre = document.getElementById("nombre").value;
-  let posicion = buscar(nombre);
-  if (posicion != -1) {
-    document.getElementById("resultado").innerHTML = coches[posicion];
-  }
-}
-
-function verTodasLasEscuderias() {
-  let resultado = "";
-  for (let escuderia of escuderias) {
-    resultado += escuderia + "<br>";
-  }
-  document.getElementById("resultado").innerHTML = resultado;
-}
-
-function verTodosLosCoches() {
-  let resultado = "";
-  for (let coche of coches) {
-    resultado += coche + "<br>";
-  }
-  document.getElementById("resultado").innerHTML = resultado;
-}
-
-function verTodasLasPersonas() {
-  let resultado = "";
-  for (let piloto of pilotos) {
-    resultado += piloto + "<br>";
-  }
-  for (let mecanico of mecanicos) {
-    resultado += mecanico + "<br>";
-  }
-  document.getElementById("resultado").innerHTML = resultado;
-}
-
-function modificarPersona() {
-  let nombre = document.getElementById("nombre").value;
-  let primerApellido = document.getElementById("primerApellido").value;
-  let edad = document.getElementById("edad").value;
-  let antiguedad = document.getElementById("antiguedad").value;
-  let sueldo = document.getElementById("sueldo").value;
-  let altura = document.getElementById("altura").value;
-  let peso = document.getElementById("peso").value;
-  let estudios = document.getElementById("estudios").value;
-
-  if (persona instanceof piloto) {
-    let piloto = new Piloto(
-      nombre,
-      primerApellido,
-      edad,
-      antiguedad,
-      sueldo,
-      altura,
-      peso
+  if (index != -1) {
+    let potencia = prompt(
+      "Introduce la nueva potencia del coche",
+      "escuderia.coches.potencia"
     );
-    PILOTOS.push(piloto);
-  } else if (persona instanceof mecanico) {
-    let mecanico = new Mecanico(
-      nombre,
-      primerApellido,
-      edad,
-      antiguedad,
-      sueldo,
-      estudios
+    let velocidadMaxima = prompt(
+      "Introduce la nueva velocidad máxima del coche",
+      "escuderia.coches.velocidadMaxima"
     );
-    MECANICOS.push(mecanico);
+    let color = prompt(
+      "Introduce el nuevo color del coche",
+      "escuderia.coches.color"
+    );
+    let precioDeMercado = prompt(
+      "Introduce el nuevo precio de mercado del coche",
+      "escuderia.coches.precioDeMercado"
+    );
+    escuderias[escuderia].coches[index].potencia = potencia;
+    escuderias[escuderia].coches[index].velocidadMaxima = velocidadMaxima;
+    escuderias[escuderia].coches[index].color = color;
+    escuderias[escuderia].coches[index].precioDeMercado = precioDeMercado;
   }
 }
 
-// Crear una funcion para modificar una escuderia usando prompt
-function modificarEscuderia(id) {
-buscar(id);
-confirm("¿Desea modificar la escuderia?");
-  let nombre = prompt("Introduce el nombre de la escuderia", "nombre");
-    let pais = prompt("Introduce el pais de la escuderia", "pais");
-    let presupuesto = prompt("Introduce el presupuesto de la escuderia", "presupuesto");
-    let escuderia = new Escuderia(nombre, pais, presupuesto);
-    ESCUDERIAS.push(escuderia);
-}
-
-function eliminarCoche() {
-  let nombre = document.getElementById("nombre").value;
-  let posicion = buscar(nombre);
-  if (posicion != -1) {
-    coches.splice(posicion, 1);
-  }
-}
-
-function eliminarEscuderia() {
-  let nombre = document.getElementById("nombre").value;
-  let posicion = buscar(nombre);
-  if (posicion != -1) {
-    escuderias.splice(posicion, 1);
-  }
-}
-
-function eliminarPersona() {
-  let nombre = document.getElementById("nombre").value;
-  let posicion = buscar(nombre);
-  if (posicion != -1) {
-    pilotos.splice(posicion, 1);
-  }
+function borrarTodosLosCoches() {
+  let escuderia = document.getElementById("escuderiaCoche").value;
+  escuderias[escuderia].coches = [];
+  console.clear(); // Borra el console.log
+  actualizarTablaEscuderia(); // Actualiza la tabla
+  console.table(escuderias[escuderia].coches);
+  console.table(escuderias);
 }

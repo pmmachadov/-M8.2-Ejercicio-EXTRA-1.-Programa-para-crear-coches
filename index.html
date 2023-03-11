@@ -5,37 +5,87 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
     <title>(M8.2) Ejercicio EXTRA 1. Programa para crear coches</title>
 </head>
 
-<body>
-    <p>La organización de un campeonato de coches quiere contar con un programa para gestionar parte de la información
-        que hasta ahora no tenían informatizada. Quieren saber de cada escudería que participa en el campeonato, su
-        nombre, su presupuesto y su país de origen. Cada escudería puede tener más de un coche y de cada uno quiere
-        saber la potencia, la velocidad máxima, el color y el precio de mercado.
+<div class="board">
+    <div>
+        <h3>ESCUDERIA</h3>
+        <label for="nombre">Nombre</label>
+        <input type="text" placeholder="Nombre" name="nombre" id="nombreEscuderia">
+        <label for="presupuesto">Presupuesto</label>
+        <input type="number" name="presupuesto" placeholder="Presupuesto" id="presupuestoEscuderia">
+        <label for="pais" placeholder="Pais" id="paisEscuderia">País</label>
+        <input type="text" name="pais" placeholder="Pais" id="paisEscuderia">
+        <button type="button" onclick="altaEscuderia()">Crear Escuderia</button>
+    </div>
+    <div>
+        <button id="bajaEscuderia" onclick="bajaEscuderia()">Baja Escuderia</button>
+        <button id="verEscuderia" onclick="verEscuderia()">Ver Escuderia</button>
+        <button id="modificarEscuderia" onclick="modificarEscuderia()">Modificar Escuderia</button>
+        <button id="borrarTodoEscuderia" onclick="borrarTodasEscuderias()">Borrar Todo</button>
+    </div>
+    <div>
+        <h3>PERSONA</h3>
+        <label for="nombre">Nombre</label>
+        <input type="text" placeholder="Nombre" name="nombre" id="nombrePersona">
+        <label for="apellido">Apellido</label>
+        <input type="text" placeholder="Apellido" name="apellido" id="primerApellidoPersona">
+        <label for="edad">Edad</label>
+        <input type="number" placeholder="Edad" name="edad" id="edadPersona">
+        <label for="antiguedad">Antiguedad</label>
+        <input type="number" placeholder="Antiguedad" name="antiguedad" id="antiguedadPersona">
+        <label for="altura" placeholder="Altura" id="alturaPersona">Altura</label>
+        <input type="number" name="altura" placeholder="Altura" id="alturaPersona">
+        <label for="peso" placeholder="Peso" id="pesoPersona">Peso</label>
+        <input type="number" name="peso" placeholder="Peso" id="pesoPersona">
+        <label for="cargo">Elige Cargo</label>
+        <select name="Cargo" id="cargoPersona">
+            <option value="piloto">Piloto</option>
+            <option value="mecanico">Mecanico</option>
+        </select>
+        <button type="button" onclick="altaPersona()">Crear Persona</button>
+    </div>
+    <div>
+        <button id="calcularSueldoPersonas" onclick="calcularSueldoPersonas(antiguedad)">Calcular Sueldo</button>
+        <button id="bajaPersona" onclick="bajaPersona()">Baja Persona</button>
+        <button id="verPersona" onclick="verPersona()">Ver Persona</button>
+        <button id="modificarPersona" onclick="modificarPersona()">Modificar Persona</button>
+        <button id="borrarTodoPersona" onclick="borrarTodasLaspersonas()">Borrar Todo</button>
+    </div>
+    <div>
+        <h3>COCHE</h3>
+        <label for="potencia">Potencia</label>
+        <input type="number" name="potencia" id="potencia" placeholder="Potencia">
+        <label for="velocidad">Velocidad</label>
+        <input type="number" name="velocidad" id="velocidad" placeholder="Velocidad">
+        <label for="color">Color</label>
+        <input type="text" name="color" id="color" placeholder="Color">
+        <label for="precio">Precio</label>
+        <input type="number" name="precio" id="precio" placeholder="Sueldo" placeholder="Precio">
+        <button type="button" onclick="altaCoche()"> Crear Coche</button>
+    </div>
+    <div>
+        <button id="bajaCoche" onclick="bajaCoche()">Baja Coche</button>
+        <button id="verCoche" onclick="verCoche()">Ver Coche</button>
+        <button id="modificarCoche" onclick="modificarCoche()">Modificar Coche</button>
+        <button id="borrarTodoCoche" onclick="borrarTodo()">Borrar Todo</button>
+    </div>
+</div>
 
-        De las personas trabajadoras de las diferentes escuderías quieren saber el nombre, el primer apellido, la edad,
-        el tiempo que llevan en la escudería y el sueldo.
-
-        El sueldo base es de 50.000€. Además, de los/las pilotos quieren saber su altura, su peso. El sueldo de los/las
-        pilotos es el sueldo base de las personas trabajadoras más 10.000€ por cada año de antigüedad en la escudería,
-        más 50.000€ de peligrosidad.
-
-        De los mecánicos quieren saber si tienen estudios superiores de mecánica o no. Y su sueldo se calcula sumando
-        10.000 € por cada año de antigüedad en la escudería más el sueldo base.
-
-        Se pide que la aplicación sea capaz de dar de alta, baja y ver pilotos y mecánicos, y ver escuderías y bólidos.
-        Las escuderías y los bólidos pueden estar introducidos directamente en el código.</p>
+<p id="tablaEscuderias"></p>
+<p id="tablaPersonas"></p>
+<p id="tablaCoches"></p>
 
 
+<script src="./js/claseCoche.js"></script>
+<script src="./js/claseEscuderia.js"></script>
+<script src="./js/clasePersona.js"></script>
+<script src="./js/clasePiloto.js"></script>
+<script src="./js/claseMecanico.js"></script>
+<script src="./js/functions.js"></script>
 
-
-    <script src="./js/claseCoche.js"></script>
-    <script src="./js/claseEscuderia.js"></script>
-    <script src="./js/clasePersona.js"></script>
-    <script src="./js/clasePiloto.js"></script>
-    <script src="./js/claseMecanico.js"></script>
-    <script src="./js/functions.js"></script>
 
 </body>
 

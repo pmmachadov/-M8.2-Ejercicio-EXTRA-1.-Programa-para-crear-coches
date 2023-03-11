@@ -1,15 +1,14 @@
-// La organización de un campeonato de coches quiere contar con un programa para gestionar parte de la información que hasta ahora no tenían informatizada. Quieren saber de cada escudería que participa en el campeonato, su nombre, su presupuesto y su país de origen.
-
 "use strict";
 
-const ESCUDERIAS = [COCHES, PERSONAS];
 class Escuderia {
-  constructor(codigo, coche, nombre = "", presupuesto = 0, pais = "") {
-    this.codigo = Escuderia.counter++;
+  constructor(coche, nombreEscuderia = "", presupuesto = 0, pais = "") {
     this.coche = coche;
-    this.nombre = nombre;
+    this.nombreEscuderia = nombreEscuderia;
     this.presupuesto = presupuesto;
     this.pais = pais;
+    this.coches = [];
+    this.personas = [];
+    this.codigoEscuderia = codigoGenerator();
   }
 
   getCoche() {
@@ -25,7 +24,7 @@ class Escuderia {
   }
 
   setNombre(nombre) {
-    this.nombre = nombre;
+    this.nombreEscuderia = this.nombreEscuderia
   }
 
   getPresupuesto() {
@@ -44,25 +43,30 @@ class Escuderia {
     this.pais = pais;
   }
 
-  getCodigo() {
-    return this.codigo;
+  getCodigoEscuderia() {
+    return this.codigoEscuderia;
   }
 
-  toString() {
-    return `Campeonato: ${this.campeonato}, Nombre: ${this.nombre}, Presupuesto: ${this.presupuesto}, País de Origen: ${this.pais}`;
+  agregarPersona(persona) {
+    this.personas.push(persona);
   }
 
-  static counter = Math.floor(Math.random() * 100000);
+  eliminarPersona(persona) {
+    const index = this.personas.indexOf(persona);
+    if (index !== -1) {
+      this.personas.splice(index, 1);
+    }
+  }
 }
 
-// Introducir 5 escuderías y mostrarlas por pantalla.
-const escuderia1 = new Escuderia("Ferrari", "Ferrari", 100000000, "Italia");
-const escuderia2 = new Escuderia("Mercedes", "Mercedes", 100000000, "Alemania");
-const escuderia3 = new Escuderia("Red Bull", "Red Bull", 100000000, "Austria");
-const escuderia4 = new Escuderia(
-  "McLaren",
-  "McLaren",
-  100000000,
-  "Reino Unido"
-);
-const escuderia5 = new Escuderia("Renault", "Renault", 100000000, "Francia");
+function codigoGenerator() {
+  let codigoEscuderia = "";
+  let characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  for (let i = 0; i < 2; i++) {
+    codigoEscuderia += characters.charAt(
+      Math.floor(Math.random() * characters.length)
+    );
+  }
+  return codigoEscuderia + "E";
+}

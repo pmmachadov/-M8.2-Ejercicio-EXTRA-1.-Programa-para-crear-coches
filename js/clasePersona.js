@@ -99,7 +99,7 @@ function codigoGeneratorPersona() {
       Math.floor(Math.random() * characters.length)
     );
   }
-  return codigoPersona + "-Persona";
+  return codigoPersona + "p";
 }
 
 class Mecanico extends Persona {

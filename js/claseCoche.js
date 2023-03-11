@@ -56,5 +56,5 @@ function codigoGenerator() {
       Math.floor(Math.random() * characters.length)
     );
   }
-  return codigoCoche + "-Coche";
+  return codigoCoche + "c";
 }

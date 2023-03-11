@@ -68,5 +68,5 @@ function codigoGenerator() {
       Math.floor(Math.random() * characters.length)
     );
   }
-  return codigoEscuderia + "-Escuderia";
+  return codigoEscuderia + "e";
 }

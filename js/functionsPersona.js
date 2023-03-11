@@ -11,8 +11,7 @@ function altaPersona() {
         let antiguedad = document.getElementById("antiguedadPersona").value;
         let altura = document.getElementById("alturaPersona").value;
         let peso = document.getElementById("pesoPersona").value;
-        let cargo = document.getElementById("cargoPersona").value;
-  
+        let cargo = document.getElementById("cargoPersona").value; 
         let Persona = {
           nombre: nombre,
           apellido: apellido,
@@ -25,14 +24,18 @@ function altaPersona() {
           codigo: codigoGenerator(),
         };
         // Add new object to the array
-        escuderias[indexEscuderia].personas.push(Persona);
-        console.table(escuderias[indexEscuderia].personas);
+        personas.push(Persona);
+        escuderias.push(Persona);
+        console.table(escuderias);
+        console.table(personas);
         actualizarTabla();
-      } else {
+      } else if (indexEscuderia == -1) {
         alert("No se ha encontrado la escudería con el código ingresado");
+        actualizarTabla();
       }
     } else {
       alert("Para crear personas primero debe existir al menos una escudería");
+      actualizarTabla();
     }
   }
   

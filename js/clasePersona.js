@@ -73,7 +73,7 @@ function codigoGeneratorPersona() {
       Math.floor(Math.random() * characters.length)
     );
   }
-  return codigoPersona + "P";
+  return codigoPersona + "-Persona";
 }
 
 ("use strict");

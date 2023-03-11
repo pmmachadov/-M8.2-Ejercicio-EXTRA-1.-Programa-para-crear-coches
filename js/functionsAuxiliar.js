@@ -69,29 +69,29 @@ function actualizarTabla() {
   if (personas.length !== 0) {
     let tablaPersonas = document.createElement("table3");
     tablaPersonas.innerHTML = `<tr>
-    <th>Código-Persona</th>
-    <th>Codigo-Escudería</th>
-    <th>Nombre</th>
-    <th>Apellido</th>
-    <th>Edad</th>
-    <th>Antiguedad</th>
-    <th>Altura</th>
-    <th>Peso</th>
-    <th>Cargo</th>
-    <th>Salario</th>
+    <td>Código-Persona</td>
+    <td>Codigo-Escudería</td>
+    <td>Nombre</td>
+    <td>Apellido</td>
+    <td>Edad</td>
+    <td>Antiguedad</td>
+    <td>Altura</td>
+    <td>Peso</td>
+    <td>Cargo</td>
+    <td>Salario</td>
     </tr>`;
     for (let i = 0; i < personas.length; i++) {
       tablaPersonas.innerHTML += `<tr>
-      <td>${personas[i].codigoPersona}</td><br>
-      <td>${personas[i].codigoEscuderia}</td><br>
-      <td>${personas[i].nombrePersona}</td><br>
-      <td>${personas[i].primerApellidoPersona}</td><br>
-      <td>${personas[i].edadPersona}</td><br>
-      <td>${personas[i].antiguedadPersona}</td><br>
-      <td>${personas[i].alturaPersona}</td><br>
-      <td>${personas[i].pesoPersona}</td><br>
-      <td>${personas[i].cargoPersona}</td><br>
-      <td>${personas[i].salarioPersona}</td><br>
+      <td>${personas[i].codigoPersona}</td>
+      <td>${personas[i].codigoEscuderia}</td>
+      <td>${personas[i].nombrePersona}</td>
+      <td>${personas[i].primerApellidoPersona}</td>
+      <td>${personas[i].edadPersona}</td>
+      <td>${personas[i].antiguedadPersona}</td>
+      <td>${personas[i].alturaPersona}</td>
+      <td>${personas[i].pesoPersona}</td>
+      <td>${personas[i].cargoPersona}</td>
+      <td>${personas[i].salarioPersona}</td>
       </tr>`;
     }
     tabla.appendChild(tablaPersonas);

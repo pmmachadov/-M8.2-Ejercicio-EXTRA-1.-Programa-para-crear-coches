@@ -26,7 +26,6 @@ function altaPersona() {
         };
         // Add new object to the array
         escuderias[indexEscuderia].personas.push(Persona);
-        actualizarTabla();
         console.table(escuderias[indexEscuderia].personas);
         actualizarTabla();
       } else {

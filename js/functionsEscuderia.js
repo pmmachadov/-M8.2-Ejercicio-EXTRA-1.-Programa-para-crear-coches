@@ -1,11 +1,11 @@
 // ESCUDERIA
 
 function altaEscuderia() {
-    let nombre = document.getElementById("nombreEscuderia").value;
+    let nombreEscuderia = document.getElementById("nombreEscuderia").value;
     let presupuesto = document.getElementById("presupuestoEscuderia").value;
     let pais = document.getElementById("paisEscuderia").value;
     let escuderia = {
-      nombre: nombre,
+      nombreEscuderia: nombreEscuderia,
       presupuesto: presupuesto,
       pais: pais,
       coches: [],
@@ -13,8 +13,8 @@ function altaEscuderia() {
       codigoEscuderia: codigoGenerator(),
     };
     escuderias.push(escuderia);
-    actualizarTabla();
     console.table(escuderias);
+    actualizarTabla();
   }
   
   function bajaEscuderia() {

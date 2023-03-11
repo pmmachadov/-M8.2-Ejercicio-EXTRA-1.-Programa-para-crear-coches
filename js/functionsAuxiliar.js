@@ -5,7 +5,6 @@ let coches = [];
 let personas = [];
 
 function buscar(codigoEscuderia) {
-  // Esta funcion debe buscar en todos los arrays que puedan existir dentro de escuderia[]
   let posicion = -1;
   let i = 0;
   let largo = escuderias.length;
@@ -18,44 +17,77 @@ function buscar(codigoEscuderia) {
   return posicion;
 }
 
-function actualizarTabla() {  
-  let tabla = "";
-  for (let i = 0; i < escuderias.length; i++) {
-    if (escuderias[i] instanceof Escuderia) {
-      tabla += `
-    <div class="card1">
-    <h3>ESCUDERIA ${i + 1}</h3> <br>
-    CODIGO: ${escuderias[i].codigoEscuderia} <br>
-    NOMBRE: ${escuderias[i].nombre} <br>
-    PRESUPUESTO: ${escuderias[i].presupuesto} <br>
-    PAIS: ${escuderias[i].pais} <br>
-    COCHES: ${escuderias[i].coches} <br>
-    personas: ${escuderias[i].personas} <br>
-    </div> `;
-    } for (let j = 0; j < personas.length; j++) {
-      if (personas[j].codigoEscuderia == escuderias[i].codigoEscuderia) {
-        tabla += `
-          <div class="card2">
-          <h3>PERSONA ${j + 1}</h3> <br>
-          CODIGO PERSONA: ${personas[j].codigo} <br>
-          CODIGO ESCUDERIA: ${personas[j].codigoEscuderia} <br>
-          <hr>
-          NOMBRE: ${personas[j].nombre} <br>
-          APELLIDO: ${personas[j].presupuesto} <br>
-          EDAD: ${personas[j].edad} <br>
-          ANTIGUEDAD: ${personas[j].antiguedad} <br>
-          ALTURA: ${personas[j].altura} <br>
-          PESO: ${personas[j].peso} <br>
-          CARGO: ${personas[j].cargo} <br>
-          </div>
-    
-          <div class="card3">
-          <h3>SUELDO</h3> <br>
-          SUELDO: ${personas[j].sueldo} <br>
-          </div>
-        `;
-      }
+// Crea una funcion llamada actualizarTabla() que muestre el contenido de todos los arrays de forma condicional. Si hay contenido se muestra, si no hay contenido se muestra un mensaje de que no hay contenido. Para ello, crea una tabla con los datos de cada array y añade la tabla al div con id tabla lista.
+
+function actualizarTabla() {
+  let tabla = document.getElementById("tabla");
+  tabla.innerHTML = "";
+  if (escuderias.length !== 0) {
+    let tablaEscuderias = document.createElement("table");
+    tablaEscuderias.innerHTML = `<tr>
+    <th>Código</th>
+    <th>Nombre</th>
+    <th>Presupuesto</th>
+    <th>País</th>
+    </tr>`;
+    for (let i = 0; i < escuderias.length; i++) {
+      tablaEscuderias.innerHTML += `<tr>
+      <td>${escuderias[i].codigoEscuderia}</td>
+      <td>${escuderias[i].nombreEscuderia}</td>
+      <td>${escuderias[i].presupuesto}</td>
+      <td>${escuderias[i].pais}</td>
+      </tr>`;
     }
+    tabla.appendChild(tablaEscuderias);
+  } else {
+    let mensaje = document.createElement("p");
+    mensaje.innerHTML = "No hay escuderías";
+    tabla.appendChild(mensaje);
   }
-  document.getElementById("tabla").innerHTML = tabla;
+  if (coches.length !== 0) {
+    let tablaCoches = document.createElement("table");
+    tablaCoches.innerHTML = `<tr>
+    <th>Código</th>
+    <th>Nombre</th>
+    <th>Motor</th>
+    <th>Chasis</th>
+    <th>Escudería</th>
+    </tr>`;
+    for (let i = 0; i < coches.length; i++) {
+      tablaCoches.innerHTML += `<tr>
+      <td>${coches[i].codigoCoche}</td>
+      <td>${coches[i].nombreCoche}</td>
+      <td>${coches[i].motor}</td>
+      <td>${coches[i].chasis}</td>
+      <td>${coches[i].codigoEscuderia}</td>
+      </tr>`;
+    }
+    tabla.appendChild(tablaCoches);
+  } else {
+    let mensaje = document.createElement("p");
+    mensaje.innerHTML = "No hay coches";
+    tabla.appendChild(mensaje);
+  }
+  if (personas.length !== 0) {
+    let tablaPersonas = document.createElement("table");
+    tablaPersonas.innerHTML = `<tr>
+    <th>Código</th>
+    <th>Nombre</th>
+    <th>Apellido</th>
+    <th>Escudería</th>
+    </tr>`;
+    for (let i = 0; i < personas.length; i++) {
+      tablaPersonas.innerHTML += `<tr>
+      <td>${personas[i].codigoPersona}</td>
+      <td>${personas[i].nombrePersona}</td>
+      <td>${personas[i].apellidoPersona}</td>
+      <td>${personas[i].codigoEscuderia}</td>
+      </tr>`;
+    }
+    tabla.appendChild(tablaPersonas);
+  } else {
+    let mensaje = document.createElement("p");
+    mensaje.innerHTML = "No hay personas";
+    tabla.appendChild(mensaje);
+  }
 }

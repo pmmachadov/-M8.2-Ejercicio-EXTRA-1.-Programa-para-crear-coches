@@ -17,8 +17,6 @@ function buscar(codigoEscuderia) {
   return posicion;
 }
 
-// Crea una funcion llamada actualizarTabla() que muestre el contenido de todos los arrays de forma condicional. Si hay contenido se muestra, si no hay contenido se muestra un mensaje de que no hay contenido. Para ello, crea una tabla con los datos de cada array y añade la tabla al div con id tabla lista.
-
 function actualizarTabla() {
   let tabla = document.getElementById("tabla");
   tabla.innerHTML = "";
@@ -45,7 +43,7 @@ function actualizarTabla() {
     tabla.appendChild(mensaje);
   }
   if (coches.length !== 0) {
-    let tablaCoches = document.createElement("table");
+    let tablaCoches = document.createElement("table2");
     tablaCoches.innerHTML = `<tr>
     <th>Código</th>
     <th>Nombre</th>
@@ -69,9 +67,10 @@ function actualizarTabla() {
     tabla.appendChild(mensaje);
   }
   if (personas.length !== 0) {
-    let tablaPersonas = document.createElement("table");
+    let tablaPersonas = document.createElement("table3");
     tablaPersonas.innerHTML = `<tr>
     <th>Código-Persona</th>
+    <th>Codigo-Escudería</th>
     <th>Nombre</th>
     <th>Apellido</th>
     <th>Edad</th>
@@ -79,7 +78,6 @@ function actualizarTabla() {
     <th>Altura</th>
     <th>Peso</th>
     <th>Cargo</th>
-    <th>Codigo-Escudería</th>
     <th>Salario</th>
     </tr>`;
     for (let i = 0; i < personas.length; i++) {
@@ -93,7 +91,7 @@ function actualizarTabla() {
       <td>${personas[i].alturaPersona}</td><br>
       <td>${personas[i].pesoPersona}</td><br>
       <td>${personas[i].cargoPersona}</td><br>
-      <td>${personas[i].salarioPersona}</td>  <br>
+      <td>${personas[i].salarioPersona}</td><br>
       </tr>`;
     }
     tabla.appendChild(tablaPersonas);

@@ -84,16 +84,16 @@ function actualizarTabla() {
     </tr>`;
     for (let i = 0; i < personas.length; i++) {
       tablaPersonas.innerHTML += `<tr>
-      <td>${personas[i].codigoPersona}</td>
-      <td>${personas[i].nombrePersona}</td>
-      <td>${personas[i].primerApellidoPersona}</td>
-      <td>${personas[i].edad}</td>
-      <td>${personas[i].antiguedad}</td>
-      <td>${personas[i].altura}</td>
-      <td>${personas[i].peso}</td>
-      <td>${personas[i].cargo}</td>
-      <td>${personas[i].codigoEscuderia}</td>
-      <td>${personas[i].salario}</td>
+      <td>${personas[i].codigoPersona}</td><br>
+      <td>${personas[i].codigoEscuderia}</td><br>
+      <td>${personas[i].nombrePersona}</td><br>
+      <td>${personas[i].primerApellidoPersona}</td><br>
+      <td>${personas[i].edadPersona}</td><br>
+      <td>${personas[i].antiguedadPersona}</td><br>
+      <td>${personas[i].alturaPersona}</td><br>
+      <td>${personas[i].pesoPersona}</td><br>
+      <td>${personas[i].cargoPersona}</td><br>
+      <td>${personas[i].salarioPersona}</td>  <br>
       </tr>`;
     }
     tabla.appendChild(tablaPersonas);

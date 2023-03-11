@@ -3,48 +3,66 @@
 "use strict";
 
 class Persona {
-  constructor(nombre, primerApellido, edad, antiguedad, sueldo, cargo) {
+  constructor(nombrePersona, primerApellidoPersona, edadPersona, antiguedadPersona, sueldo, cargoPersona) {
     this.nombrePersona = nombrePersona;
     this.primerApellidoPersona = primerApellidoPersona;
-    this.edad = edad;
-    this.antiguedad = antiguedad;
+    this.edadPersona = edadPersona;
+    this.antiguedadPersona = antiguedadPersona;
+    this.alturaPersona = alturaPersona;
+    this.pesoPersona = pesoPersona;
     this.sueldo = sueldo;
-    this.cargo = cargo;
+    this.cargoPersona = cargoPersona;
     this.mecanicos = [];
     this.pilotos = [];
     this.codigoPersona = codigoGeneratorPersona();
   }
 
-  getNombre() {
+  getnombrePersona() {
     return this.nombrePersona;
   }
 
-  setNombre(nombre) {
-    this.nombre = nombrePersona;
+  setnombrePersona(nombrePersona) {
+    this.nombrePersona = nombrePersona;
   }
 
-  getPrimerApellido() {
+  getprimerApellidoPersona() {
     return this.primerApellidoPersona;
   }
 
-  setPrimerApellido(primerApellido) {
+  setprimerApellidoPersona(primerApellidoPersona) {
     this.primerApellidoPersona = primerApellidoPersona;
   }
 
-  getEdad() {
-    return this.edad;
+  getedadPersona() {
+    return this.edadPersona;
   }
 
-  setEdad(edad) {
-    this.edad = edad;
+  setedadPersona(edadPersona) {
+    this.edadPersona = edadPersona;
   }
 
-  getAntiguedad() {
-    return this.antiguedad;
+  getantiguedadPersona() {
+    return this.antiguedadPersona;
   }
 
-  setAntiguedad(antiguedad) {
-    this.antiguedad = antiguedad;
+  setantiguedadPersona(antiguedadPersona) {
+    this.antiguedadPersona = antiguedadPersona;
+  }
+
+  getalturaPersona() {
+    return this.alturaPersona;
+  }
+
+  setalturaPersona(alturaPersona) {
+    this.alturaPersona = alturaPersona;
+  }
+
+  getpesoPersona() {
+    return this.pesoPersona;
+  }
+
+  setpesoPersona(pesoPersona) {
+    this.pesoPersona = pesoPersona;
   }
 
   getSueldo() {
@@ -55,16 +73,20 @@ class Persona {
     this.sueldo = sueldo;
   }
 
-  getCargo() {
-    return this.cargo;
+  getcargoPersona() {
+    return this.cargoPersona;
   }
 
-  setCargo(cargo) {
-    this.cargo = cargo;
+  setcargoPersona(cargoPersona) {
+    this.cargoPersona = cargoPersona;
   }
 
   getCodigoPersona() {
     return this.codigoPersona;
+  }
+
+  setCodigoPersona(codigoPersona) {
+    this.codigoPersona = codigoPersona;
   }
 }
 

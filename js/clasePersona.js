@@ -2,15 +2,18 @@
 
 "use strict";
 
-const PERSONAS = [MECANICOS, PILOTOS];
-class Persona {
-  constructor(codigo, nombre, primerApellido, edad, antiguedad, sueldo) {
-    this.codigo = Persona.counter++;
+class Persona{
+
+  constructor(nombre, primerApellido, edad, antiguedad, sueldo, cargo) {
     this.nombre = nombre;
     this.primerApellido = primerApellido;
     this.edad = edad;
     this.antiguedad = antiguedad;
     this.sueldo = sueldo;
+    this.cargo = cargo;
+    this.mecanicos = [];
+    this.pilotos = [];
+    this.codigoPersona = codigoGeneratorPersona();
   }
 
   getNombre() {
@@ -53,8 +56,23 @@ class Persona {
     this.sueldo = sueldo;
   }
 
-  toString() {
-    return `Nombre: ${this.nombre}, Primer Apellido: ${this.primerApellido}, Edad: ${this.edad}, Tiempo en Escudería: ${this.antiguedad}, Sueldo: ${this.sueldo}`;
-  }
-  static counter = Math.floor(Math.random() * 100000);
+    getCargo() {
+    return this.cargo;
+    }
+
+    setCargo(cargo) {
+    this.cargo = cargo;
+    }
+}
+
+function codigoGeneratorPersona() {
+    let codigoPersona = "";
+    let characters =
+      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    for (let i = 0; i < 2; i++) {
+        codigoPersona += characters.charAt(
+        Math.floor(Math.random() * characters.length)
+      );
+    }
+    return codigoPersona + "P";
 }

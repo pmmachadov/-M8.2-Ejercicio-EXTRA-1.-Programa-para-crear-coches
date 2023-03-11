@@ -4,6 +4,8 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    font-family: monospace;
+    font-size: 16px;
 }
 
 .board {
@@ -11,8 +13,6 @@ body {
     color: #ffffff;
     display: flex;
     flex-direction: column;
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
     margin: 10px;
     padding: 10px;
     text-align: center;
@@ -63,7 +63,8 @@ button {
     height: 30px;
     justify-content: center;
     margin: 0 auto;
-    padding: 30 width: 150px;
+    padding: 30;
+    width: 150px;
 }
 
 input {
@@ -73,8 +74,23 @@ input {
     /* Centrar el input */
 }
 
-.card {
+.card1 {
     border: 3px solid rgb(197, 199, 80);
     border-radius: 10px;
     margin: 10px;
+    color:#ffffff;
+}
+
+.card2 {
+    border: 3px solid rgb(197, 199, 80);
+    border-radius: 10px;
+    margin: 10px;
+    color:#ffffff;
+}
+
+.card3 {
+    border: 3px solid rgb(197, 199, 80);
+    border-radius: 10px;
+    margin: 10px;
+    color:#ffffff;
 }

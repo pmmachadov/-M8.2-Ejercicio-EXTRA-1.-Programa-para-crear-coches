@@ -16,7 +16,7 @@
         <input type="text" placeholder="Nombre" name="nombre" id="nombreEscuderia">
         <label for="presupuesto">Presupuesto</label>
         <input type="number" name="presupuesto" placeholder="Presupuesto" id="presupuestoEscuderia">
-        <label for="pais" placeholder="Pais" id="paisEscuderia">País</label>
+        <label for="pais" placeholder="Pais" id="vPaisEscuderia">País</label>
         <input type="text" name="pais" placeholder="Pais" id="paisEscuderia">
         <button type="button" onclick="altaEscuderia()">Crear Escuderia</button>
     </div>
@@ -36,12 +36,12 @@
         <input type="number" placeholder="Edad" name="edad" id="edadPersona">
         <label for="antiguedad">Antiguedad</label>
         <input type="number" placeholder="Antiguedad" name="antiguedad" id="antiguedadPersona">
-        <label for="altura" placeholder="Altura" id="alturaPersona">Altura</label>
+        <label for="vAltura" placeholder="Altura" id="alturaPersonaLabel">Altura</label>
         <input type="number" name="altura" placeholder="Altura" id="alturaPersona">
-        <label for="peso" placeholder="Peso" id="pesoPersona">Peso</label>
+        <label for="vPeso" placeholder="Peso" id="pesoPersonaLabel">Peso</label>
         <input type="number" name="peso" placeholder="Peso" id="pesoPersona">
         <label for="cargo">Elige Cargo</label>
-        <select name="Cargo" id="cargoPersona">
+        <select name="Cargo" id="cargoPersona" title="vCargo">
             <option value="piloto">Piloto</option>
             <option value="mecanico">Mecanico</option>
         </select>
@@ -74,9 +74,7 @@
     </div>
 </div>
 
-<p id="tablaEscuderias"></p>
-<p id="tablaPersonas"></p>
-<p id="tablaCoches"></p>
+<p id="tabla"></p>
 
 
 <script src="./js/claseCoche.js"></script>
@@ -84,7 +82,11 @@
 <script src="./js/clasePersona.js"></script>
 <script src="./js/clasePiloto.js"></script>
 <script src="./js/claseMecanico.js"></script>
-<script src="./js/functions.js"></script>
+<script src="./js/functionsAuxiliar.js"></script>
+<script src="./js/functionCoche.js"></script>
+<script src="./js/functionsEscuderia.js"></script>
+<script src="./js/functionsPersona.js"></script>
+
 
 
 </body>

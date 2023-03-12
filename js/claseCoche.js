@@ -47,7 +47,7 @@ class Coche {
   }
 }
 
-function codigoGenerator() {
+function codigoGeneratorCoche() {
   let codigoCoche = "";
   let characters =
     "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";

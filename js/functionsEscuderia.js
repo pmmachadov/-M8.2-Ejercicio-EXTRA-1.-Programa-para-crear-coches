@@ -1,3 +1,5 @@
+"use strict";
+
 function altaEscuderia() {
     let nombreEscuderia = document.getElementById("nombreEscuderia").value;
     let presupuesto = document.getElementById("presupuestoEscuderia").value;
